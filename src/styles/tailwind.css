@@ -1,3 +1,91 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+
+
+:root {
+    --bg: #fc8181;
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border-radius: 8px;
+    --border: 1px;
+    --speed: 500ms; 
+  }
+
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    height: var(--nav-size);
+    padding: 0 1rem;
+    z-index: 100;
+  }
+
+.nav-item {
+    width: calc(var(--nav-size) * 0.8)
+}
+
+.icon-button {
+    --button-size: calc(var(--nav-size) * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: 5px;
+    margin: 2px;
+    transition: filter 300ms;
+}
+
+.icon-button:hover {
+    filter: brightness(1.2)
+}
+
+.dropdown {
+    position: absolute;
+    top: 58px;
+    width: 300px;
+    transform: translateX(-45%);
+    background-color: var(--bg);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    transition: height var(--speed) ease;
+  }
+
+
+  .menu-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.25rem;
+  }
+
+  .menu-item:hover{
+      background-color: #fed7d7;
+  }
+
+  .logo {
+    float: left;
+    position: relative;
+    margin: 10px 15px 15px 10px; 
+}
+
+.login-background {
+  background-image: url("https://media.allure.com/photos/5ee3fa2b9fef7c000870b6a4/1:1/w_2000,h_2000,c_limit/black-owned-hair-care-brands-.jpg");
+}
+
+
+.feed {
+  margin-left: 25%;
+  margin-right: 25%;
+}

@@ -1,15 +1,33 @@
 import React, { Component } from 'react'
-import Footer from './Footer'
-import LoginForm from '../partials/LoginForm'
-import logo from '../styles/Kinks3.png'
+import Footer from '../Footer'
+import LoginForm from '../../partials/LoginForm'
+import Modal from '../modal/Modal'
+import logo from '../../styles/Kinks3.png'
+
 
 
 export default class Login extends Component {
+    constructor(){
+        super();
+        this.state = {
+            showModal: false
+        }
+    }
 
 
 
+    showModal = () => {
+        this.setState({
+            showModal: true
+        })
+    }
 
 
+    closeModal = () => {
+        this.setState({
+            showModal: false
+        })
+    }
 
 
     render(){
@@ -28,8 +46,9 @@ export default class Login extends Component {
                     </div>
                     <div className="mt-20">
                         <p className="text-red-400 font-bold">Join Kinks today.</p>
-                        <button className="rounded-full bg-red-300 border-red-300 border-2 py-2 px-32 text-white font-bold">sign up</button>
+                        <button onClick={this.showModal} className="focus:outline-none rounded-full bg-red-300 border-none border-2 py-2 px-32 text-white font-bold hover:bg-red-400 shadow">sign up</button>
                     </div>
+                    <Modal show={this.state.showModal} close={this.closeModal}/>
                 </div>
             </div>
         )

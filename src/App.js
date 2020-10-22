@@ -51,18 +51,18 @@ export default class App extends Component {
 
 
 
-  render(){
+  render(props){
     console.log(this.state)
     return (
       <Router>
   
         <Route exact path="/home">
-        <NavBar>
+        {/* <NavBar>
           <NavItem icon={<i className="fas fa-bars"></i>}>
             <Menu/>
           </NavItem>
-        </NavBar>
-        <Home />
+        </NavBar> */}
+            <Route render={ (props) => <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>} />
         </Route>
   
         <Route exact path="/" render={(props) => < Login {...props} loggedInStatus={this.state.isLoggedIn} handleLogin={this.handleLogin} />  }/>

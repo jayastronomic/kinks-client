@@ -9,7 +9,7 @@ import logo from '../styles/Kinks2.png'
 const NavBar = (props) => {
     return (
         <nav className="navbar border-b-2 border-red-200 border-solid bg-red-400 sticky top-0 ">
-            <img className=" h-10 logo" src={logo}/>
+            <img className=" h-10 logo" alt='' src={logo}/>
             <ul className="max-w-full h-full flex justify-end">{ props.children }</ul>
         </nav>
     )

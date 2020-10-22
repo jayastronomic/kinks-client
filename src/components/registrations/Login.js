@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Footer from '../Footer'
 import LoginForm from '../../partials/LoginForm'
-import Modal from '../modal/Modal'
+import Modal from './modal/Modal'
 import logo from '../../styles/Kinks3.png'
 
 
@@ -36,7 +35,7 @@ export default class Login extends Component {
                 <div className="w-2/4 h-screen login-background bg-no-repeat bg-cover mr-48">
                 </div>
                 <div className="w-1/4 h-screen">
-                    <LoginForm />
+                    <LoginForm history={this.props.history} handleLogin={this.props.handleLogin} loggedInStatus={this.props.loggedInStatus}/>
                     <div className="wax-w-full mt-20 mb-10">
                         <img alt="" src={logo}/>
                     </div>
@@ -46,9 +45,9 @@ export default class Login extends Component {
                     </div>
                     <div className="mt-20">
                         <p className="text-red-400 font-bold">Join Kinks today.</p>
-                        <button onClick={this.showModal} className="focus:outline-none rounded-full bg-red-300 border-none border-2 py-2 px-32 text-white font-bold hover:bg-red-400 shadow">sign up</button>
+                        <button onClick={this.showModal} className="focus:outline-none rounded-full bg-red-400 border-none border-2 py-2 px-32 text-white font-bold hover:bg-red-300 shadow">sign up</button>
                     </div>
-                    <Modal show={this.state.showModal} close={this.closeModal}/>
+                    <Modal  history={this.props.history} handleLogin={this.props.handleLogin} loggedInStatus={this.props.loggedInStatus} show={this.state.showModal} close={this.closeModal}/>
                 </div>
             </div>
         )

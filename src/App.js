@@ -1,39 +1,29 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 
+// connects to redux store
 import { connect } from 'react-redux'
 
 //action creators
 import { fetchAuthUserSuccess } from './actions/userActions'
 import { isLoggedIn } from './actions/userActions'
+import { removeAuthUser } from './actions/userActions'
 
-
+// components
 import Login from './components/registrations/Login'
 import Home from './components/Home'
 
 const API = 'http://localhost:3001/api/v1/logged_in'
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isLoggedIn: false,
-      user: {}
-    }
-  }
-
+ 
   handleLogin = (obj) => {
-    if (obj) {
-      const bool = true
-      this.props.isLoggedIn(bool)
-      this.props.fetchAuthUserSuccess(obj.user)
-    }
+    this.props.fetchAuthUserSuccess(obj.user)
+    this.props.isLoggedIn(obj.logged_in)
   }
-  handleLogout = () => {
-    this.setState({
-    isLoggedIn: false,
-    user: {}
-    })
+  handleLogout = (obj) => {
+    this.props.removeAuthUser(obj.user)
+    this.props.isLoggedIn(obj.logged_in)
   }
 
   loginStatus = () => {
@@ -43,7 +33,7 @@ class App extends Component {
       if (obj.logged_in) {
         this.handleLogin(obj)
       } else {
-        this.handleLogout()
+        this.handleLogout(obj)
       }
     })
     .catch(err => console.log('api errors:', err ))
@@ -56,15 +46,10 @@ class App extends Component {
 
 
   render(){
-    console.log(this.props)
     return (
       <Router>
-  
-        <Route exact path="/home">
-            <Route render={ (props) => <Home {...props} {...this.props.authUser} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>} />
-        </Route>
-  
-        <Route exact path="/" render={(props) => < Login {...props} loggedInStatus={this.state.isLoggedIn} handleLogin={this.handleLogin} />  }/>
+        <Route exact path="/home" render={ (props) => <Home {...props} {...this.props.authUser}  /> } />
+        <Route exact path="/" render={(props) => < Login {...props}  handleLogin={this.handleLogin} />  } />
       </Router>
     );
   }
@@ -79,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchAuthUserSuccess,
-  isLoggedIn
+  isLoggedIn,
+  removeAuthUser
 }
 
 

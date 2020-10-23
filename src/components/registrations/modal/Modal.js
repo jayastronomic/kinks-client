@@ -70,7 +70,6 @@ export default class Modal extends Component {
         if (!this.props.show){
             return null
         }
-        console.log(this.state.password)
     return(
         <div className="bg-black bg-opacity-75 absolute inset-0 flex  justify-center items-center">
             <div className=" bg-red-200 flex flex-col rounded items-center w-4/12">

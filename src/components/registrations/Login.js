@@ -35,7 +35,7 @@ export default class Login extends Component {
                 <div className="w-2/4 h-screen login-background bg-no-repeat bg-cover mr-48">
                 </div>
                 <div className="w-1/4 h-screen">
-                    <LoginForm history={this.props.history} handleLogin={this.props.handleLogin} loggedInStatus={this.props.loggedInStatus}/>
+                    <LoginForm history={this.props.history} handleLogin={this.props.handleLogin} />
                     <div className="wax-w-full mt-20 mb-10">
                         <img alt="" src={logo}/>
                     </div>

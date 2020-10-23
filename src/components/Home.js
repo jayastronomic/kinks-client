@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import KinksContainer from '../containers/KinksContainer.js'
-import arr from '../data'
 import Logout from './Logout'
 import Left from './home/Left'
 import Feed from './home/Feed'
@@ -20,7 +19,7 @@ export default class Home extends Component {
         return(
             
             <div className="h-screen flex">
-                <Left history={this.props.history} handleLogout={this.props.handleLogout} loggedInStatus={this.props.loggedInStatus} />
+                <Left history={this.props.history} />
                 <Feed />
                 <Right user={this.props.username}/>
             </div>

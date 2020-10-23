@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { isLoggedIn } from '../../actions/userActions'
+import { removeAuthUser } from '../../actions/userActions'
 
 const API = 'http://localhost:3001/api/v1/logout'
 
@@ -9,8 +11,12 @@ const Left = (props) => {
         fetch(API, {method: 'DELETE', credentials: 'include'} )
         .then(resp => resp.json())
         .then(obj => {
-            props.handleLogout();
-            props.history.push('/')
+            if (obj.logged_in === false) {
+                props.removeAuthUser(obj.user)
+                props.isLoggedIn(obj.logged_in)
+                props.history.push('/')
+                
+            }
         })
         .catch(err => console.log(err))
     }
@@ -31,13 +37,17 @@ const Left = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
+
+const mapStateToProps = (state) => {
     return {
-        logout: () => {
-            const action = { type: "LOGOUT"}
-            dispatch(action)
-        }
+        loggedInStatus: state.loggedInStatus
     }
 }
 
-export default connect(null, mapDispatchToProps)(Left)
+
+const mapDispatchToProps = {
+    removeAuthUser,
+    isLoggedIn
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Left)

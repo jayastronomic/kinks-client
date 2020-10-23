@@ -1,11 +1,11 @@
 
 export default function authUser(state = {}, action){
     switch(action.type){
-        case 'FETCH_AUTH_USER_SUCCESS':
+         case 'FETCH_AUTH_USER_SUCCESS':
            return action.authUser
-        case 'FETCH_AUTH_USER_FAILED':
-           return state
-        default:
+         case 'REMOVE_AUTH_USER':
+           return action.authUser
+         default:
            return state 
     }
 } 

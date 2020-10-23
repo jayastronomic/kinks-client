@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar'
-import { NavItem } from './components/NavBar'
-import { Menu } from './components/NavBar'
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+import { connect } from 'react-redux'
+
+//action creators
+import { fetchAuthUserSuccess } from './actions/userActions'
+import { isLoggedIn } from './actions/userActions'
 
 
 import Login from './components/registrations/Login'
@@ -10,7 +13,7 @@ import Home from './components/Home'
 
 const API = 'http://localhost:3001/api/v1/logged_in'
 
-export default class App extends Component {
+class App extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -20,10 +23,11 @@ export default class App extends Component {
   }
 
   handleLogin = (obj) => {
-    this.setState({
-      isLoggedIn: true,
-      user: obj.user
-    })
+    if (obj) {
+      const bool = true
+      this.props.isLoggedIn(bool)
+      this.props.fetchAuthUserSuccess(obj.user)
+    }
   }
   handleLogout = () => {
     this.setState({
@@ -52,17 +56,12 @@ export default class App extends Component {
 
 
   render(){
-    console.log(this.state)
+    console.log(this.props)
     return (
       <Router>
   
         <Route exact path="/home">
-        {/* <NavBar>
-          <NavItem icon={<i className="fas fa-bars"></i>}>
-            <Menu/>
-          </NavItem>
-        </NavBar> */}
-            <Route render={ (props) => <Home {...props} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>} />
+            <Route render={ (props) => <Home {...props} {...this.props.authUser} handleLogout={this.handleLogout} loggedInStatus={this.state.isLoggedIn}/>} />
         </Route>
   
         <Route exact path="/" render={(props) => < Login {...props} loggedInStatus={this.state.isLoggedIn} handleLogin={this.handleLogin} />  }/>
@@ -70,5 +69,20 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    authUser: state.authUser,
+    loggedInStatus: state.loggedInStatus
+  }
+}
+
+const mapDispatchToProps = {
+  fetchAuthUserSuccess,
+  isLoggedIn
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 

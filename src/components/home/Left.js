@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const API = 'http://localhost:3001/api/v1/logout'
 
@@ -30,4 +31,13 @@ const Left = (props) => {
     )
 }
 
-export default Left
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => {
+            const action = { type: "LOGOUT"}
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Left)

@@ -19,16 +19,10 @@ export default class Home extends Component {
     render(){ 
         return(
             
-            <div className="overscroll-none h-screen flex ">
-
-                {/* sidebar left */}
+            <div className="h-screen flex">
                 <Left history={this.props.history} handleLogout={this.props.handleLogout} loggedInStatus={this.props.loggedInStatus} />
-
-                {/* Feed */}
                 <Feed />
-    
-                {/* sidebar right */}
-                <Right />
+                <Right user={this.props.username}/>
             </div>
         )
     }

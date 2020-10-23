@@ -3,7 +3,7 @@ import KinkCard from '../components/cards/KinkCard.js'
 
 const KinksContainer = (props) => {
     return(
-        <div>
+        <div className="">
             {props.kinks.map((kink, index) => {
                 return <KinkCard key={index} {...kink} />
             }) }

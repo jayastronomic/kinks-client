@@ -85,10 +85,12 @@ a {
 }
 
 
-.feed {
-  margin-left: 25%;
-  margin-right: 25%;
+
+.feed::-webkit-scrollbar {
+  display: none;
 }
+
+  
 
 
 

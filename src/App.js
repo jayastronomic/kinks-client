@@ -51,7 +51,7 @@ export default class App extends Component {
 
 
 
-  render(props){
+  render(){
     console.log(this.state)
     return (
       <Router>

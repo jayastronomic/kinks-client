@@ -31,7 +31,7 @@ export default class Login extends Component {
 
     render(){
         return(
-            <div className="flex bg-red-200 h-full over overflow-y-hidden">
+            <div className="flex bg-red-200 h-full  overflow-y-hidden">
                 <div className="w-2/4 h-screen login-background bg-no-repeat bg-cover mr-48">
                 </div>
                 <div className="w-1/4 h-screen">

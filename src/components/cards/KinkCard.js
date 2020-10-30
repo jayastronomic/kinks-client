@@ -1,12 +1,16 @@
 import React from 'react'
 
 
-const KinkCard = () => {
+const KinkCard = (props) => {
     return(
-        <div className="border-2 border-black w-full">
-            <div className="">
-                card
-                {/* <img alt="" src="https://images.squarespace-cdn.com/content/v1/5367e11fe4b0dbc1364e1aa2/1495608152280-43WZ4XILE9DNTOHJJVDG/ke17ZwdGBToddI8pDm48kMF0ORmNSQushQufS7-YVWVZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyjXPZ_Cm50e61mNRgqbhN3gcD_mW-FQoWRgWAnJQ_lEF5rqlTtNVe3i1GeLFvci5U/image-asset.jpeg" /> */}
+        <div className=" hover:bg-opacity-75 transition duration-300  bg-red-200 flex justify-center border border-white w-full">
+            <div className="flex-col space-y-4 p-10">
+                <div className="flex justify-center items-center">
+                        <img className="border border-white rounded-2xl" src={props.img_url} />
+                </div>
+                <div className="pt-8 justify-center items-center">
+                    {props.description}
+                </div>
             </div>
         </div>
     )

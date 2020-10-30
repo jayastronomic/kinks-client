@@ -5,9 +5,26 @@ import Left from './home/Left'
 import Feed from './home/Feed'
 import Right from './home/Right'
 
+import { connect } from 'react-redux'
+import { fetchPostsSuccess } from '../actions/postActions'
+
+const API = 'http://localhost:3001/api/v1/posts'
 
 
-export default class Home extends Component {
+class Home extends Component {
+
+    
+
+    componentDidMount(){
+        fetch(API, {credentials: 'include'})
+        .then(resp => resp.json())
+        .then(obj => {
+            if (obj.status === "SUCCESS") {
+                this.props.fetchPostsSuccess(obj)
+            }
+        })
+        .catch(err => console.log(err))
+    }
 
 
 
@@ -16,13 +33,26 @@ export default class Home extends Component {
 
 
     render(){ 
+        console.log(this.props)
         return(
             
             <div className="h-screen flex">
                 <Left history={this.props.history} />
-                <Feed />
+                <Feed posts={this.props.posts}/>
                 <Right user={this.props.username}/>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts
+    }
+}
+
+const mapDispatchToProps = {
+    fetchPostsSuccess
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Home);

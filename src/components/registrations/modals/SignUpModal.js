@@ -4,7 +4,7 @@ import logo from '../../../styles/Kinks.png'
 
 const API = 'http://localhost:3001/api/v1/users'
 
-export default class Modal extends Component {
+export default class SignUpModal extends Component {
     constructor(){
         super();
         this.state = {

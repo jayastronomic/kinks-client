@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 // connects to redux store
 import { connect } from 'react-redux'
@@ -12,6 +12,8 @@ import { removeAuthUser } from './actions/userActions'
 // components
 import Login from './components/registrations/Login'
 import Home from './components/Home'
+import Profile from './components/Profile'
+import PostModal from './components/PostModal';
 
 const API = 'http://localhost:3001/api/v1/logged_in'
 
@@ -48,8 +50,12 @@ class App extends Component {
   render(){
     return (
       <Router>
-        <Route exact path="/home" render={ (props) => <Home {...props} {...this.props.authUser}  /> } />
-        <Route exact path="/" render={(props) => < Login {...props}  handleLogin={this.handleLogin} />  } />
+        <Switch>
+          <Route exact path="/home" render={ (props) => <Home {...props} {...this.props.authUser}  /> } />
+          <Route exact path="/" render={(props) => <Login {...props}  handleLogin={this.handleLogin} />  } />
+          <Route exact path="/profile" render={(props) => <Profile {...props } /> } />
+          <Route path="/compose/kink" render={ () => <PostModal />}/>
+        </Switch>
       </Router>
     );
   }
